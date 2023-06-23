@@ -2,7 +2,7 @@
 if(!defined('BASEPATH')) echo "Dilarang mengakses ke halaman ini!";
 
 define('DEFAULT_CONTROLLER', 'C_Auth');
-define('BASE_URL', 'http:localhost:8000');
+define('BASE_URL', 'http://localhost:8000/');
 define('APP_NAME', 'Aplikasi Rental Mobil');
 
 define('DB_HOST', 'localhost');
