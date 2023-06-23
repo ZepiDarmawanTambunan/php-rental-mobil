@@ -4,9 +4,11 @@
 if(!defined('BASEPATH')) echo "Tidak bisa langsung mengakses halaman ini!";
 
 class Controller{
+    // $this->view('akun/index', $data); 
     public function view($view, $data=[]){
-        if(isset($data)) extract($data); // array('nama' => 'zepi'); -> echo $nama;
-        if(file_exists(V_PATH . DS . $view . '.php')) require_once V_PATH . DS . $view . '.php';
+        if(isset($data)) extract($data); // $data['model'] -> $model;
+        if(file_exists(V_PATH . DS . $view . '.php')) require_once V_PATH . DS . $view . '.php'; 
+        // C:/php-rental-mobil/views/akun/index.php
         else die('view tidak ditemukan!');
     }
 
