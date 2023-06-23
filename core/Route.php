@@ -14,7 +14,7 @@ class Route {
 		$this->_setController();
 		$this->_setMethod();
 		$this->_setParams();
-    
+
         if(method_exists($this->_controller, $this->_method)) call_user_func_array([$this->_controller, $this->_method], $this->_params);
         else die('method tidak ditemukan!');
     }
