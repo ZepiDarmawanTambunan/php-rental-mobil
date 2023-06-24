@@ -20,8 +20,33 @@ class C_Auth extends Controller{
 	}
 
 	public function login(){
-		var_dump("tes");
-		return 'tes';
+		if(!isset($_POST['login'])) redirect();
+		else {
+			$username = $this->req->post('username');
+			$password = $this->req->post('password');
+
+			$akun = $this->akun->cek_login($username);
+			
+			if($akun->num_rows > 0){
+				$akun = $akun->fetch_object();
+				if(password_verify($password, $akun->password)){
+					setSession('login', [
+						'auth' => true,
+						'nama' => $akun->nama,
+						'username' => $akun->username,
+						'foto' => $akun->foto,
+						'waktu' => date('d M Y H:i:s')
+					]);
+					redirect('dashboard');
+				} else {
+					setSession('error', 'Password salah!');
+					redirect();
+				}
+			} else {
+				setSession('error', 'Username tidak ditemukan!');
+				redirect();
+			}
+		}
 	}
 
 	public function logout(){

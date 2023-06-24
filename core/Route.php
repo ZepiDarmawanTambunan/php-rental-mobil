@@ -19,14 +19,28 @@ class Route {
         else die('method tidak ditemukan!');
     }
 
-    protected function _dispatchUrl(){
-		// $_GET   		-> http://localhost/product?id=23  -> ['id' => '23']
-		// $_GET['url']	-> http://localhost/product?url=tes -> ['url' => 'tes']
-        $this->_url = isset($_GET['url']) ? $_GET['url'] : '';
-		$this->_url = filter_var($this->_url, FILTER_SANITIZE_URL); // membersihkan karakter params yg aneh krn bisa memicu hacker
-		$this->_url = rtrim($this->_url, '/'); // http://example.com/product/view
-        $this->_url = explode('/', $this->_url); // result : [product, view, 123]
-    }
+	// BEFORE (BUT ERROR)
+	// protected function _dispatchUrl(){
+	// 	$this->_url = isset($_GET['url']) ? $_GET['url'] : '';
+	// 	$this->_url = filter_var($this->_url, FILTER_SANITIZE_URL);
+	// 	$this->_url = rtrim($this->_url, '/');
+	// 	$this->_url = explode('/', $this->_url);
+	// }
+	
+	// NOW
+	protected function _dispatchUrl(){
+		$url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+		$url = filter_var($url, FILTER_SANITIZE_URL);
+		$url = rtrim($url, '/');
+		$url = explode('?', $url)[0]; // Menghapus query string
+	
+		$this->_url = array_values(array_filter(explode('/', $url)));
+	
+		// Mengganti NULL menjadi "" jika $this->_url[0] adalah NULL
+		if (!isset($this->_url[0])) {
+			$this->_url[0] = "";
+		}
+	}
 
     // product => C_Product.php
     protected function _setController(){
@@ -48,7 +62,6 @@ class Route {
 	protected function _setMethod(){
 		if(isset($this->_url[1])) $this->_method = $this->_url[1];
 		else $this->_method = 'index';
-
 		if(method_exists($this->_controller, $this->_method)) unset($this->_url[1]);
 	}
     

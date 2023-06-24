@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2020 at 06:57 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Jun 24, 2023 at 06:47 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rental_mobil`
+-- Database: `php-rental-mobil`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +33,7 @@ CREATE TABLE `tbl_akun` (
   `username` varchar(15) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `foto` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_akun`
@@ -42,7 +41,7 @@ CREATE TABLE `tbl_akun` (
 
 INSERT INTO `tbl_akun` (`id`, `nama`, `username`, `password`, `foto`) VALUES
 (4, 'Administrator', 'admin', '$2y$10$tf2VKfD.kjhXFc16fbaNY.EvtMhvhb8iYFWvHVr5MURTg443VwmIm', 'administrator-1579273408.png'),
-(5, 'Fakhrul Fanani Nugroho', 'nugrohoff', '$2y$10$MzYgUN41HVHtmLixc40jxuBwXbstCYqeCxMTitlUsTcEIO8KdN.Su', 'fakhrul-fanani-nugroho-1579279638.jpg');
+(5, 'Zepi Darmawan T', 'zepidarmawan', '$2y$10$MzYgUN41HVHtmLixc40jxuBwXbstCYqeCxMTitlUsTcEIO8KdN.Su', 'computer-user-icon-2.png');
 
 -- --------------------------------------------------------
 
@@ -53,7 +52,7 @@ INSERT INTO `tbl_akun` (`id`, `nama`, `username`, `password`, `foto`) VALUES
 CREATE TABLE `tbl_jenis_bayar` (
   `id` int(11) NOT NULL,
   `jenis_bayar` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_jenis_bayar`
@@ -72,7 +71,7 @@ INSERT INTO `tbl_jenis_bayar` (`id`, `jenis_bayar`) VALUES
 CREATE TABLE `tbl_merk` (
   `id` int(11) NOT NULL,
   `merk` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_merk`
@@ -97,7 +96,7 @@ CREATE TABLE `tbl_mobil` (
   `tahun_beli` int(4) DEFAULT NULL,
   `gambar` varchar(100) DEFAULT NULL,
   `id_merk` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_mobil`
@@ -120,15 +119,15 @@ CREATE TABLE `tbl_pemesan` (
   `alamat` varchar(100) DEFAULT NULL,
   `jenis_kelamin` enum('L','P') DEFAULT NULL,
   `foto` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_pemesan`
 --
 
 INSERT INTO `tbl_pemesan` (`id`, `nama`, `alamat`, `jenis_kelamin`, `foto`) VALUES
-(6, 'Fakhrul', 'Sidareja', 'L', 'fakhrul-1579004931.jpg'),
-(7, 'Fanani', 'Sidareja', 'L', 'fanani-1579275545.png');
+(6, 'Deka', 'Sidareja', 'L', 'computer-user-icon-1.png'),
+(7, 'Adit', 'Sidareja', 'L', 'computer-user-icon-4.png');
 
 -- --------------------------------------------------------
 
@@ -141,7 +140,7 @@ CREATE TABLE `tbl_perjalanan` (
   `asal` varchar(20) DEFAULT NULL,
   `tujuan` varchar(20) DEFAULT NULL,
   `jarak` int(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_perjalanan`
@@ -166,7 +165,7 @@ CREATE TABLE `tbl_pesanan` (
   `id_mobil` int(11) DEFAULT NULL,
   `id_perjalanan` int(11) DEFAULT NULL,
   `id_jenis_bayar` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_pesanan`
