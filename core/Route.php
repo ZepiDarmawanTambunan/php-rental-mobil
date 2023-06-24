@@ -20,9 +20,11 @@ class Route {
     }
 
     protected function _dispatchUrl(){
-        $this->_url = isset($_GET['url']) ? $_GET['url'] : ''; // http://example.com/product/view/123
-        $this->_url = filter_var($this->_url, FILTER_SANITIZE_URL); // membersihkan karakter params yg aneh krn bisa memicu hacker
-        $this->_url = rtrim($this->_url, '/'); // http://example.com/product/view
+		// $_GET   		-> http://localhost/product?id=23  -> ['id' => '23']
+		// $_GET['url']	-> http://localhost/product?url=tes -> ['url' => 'tes']
+        $this->_url = isset($_GET['url']) ? $_GET['url'] : '';
+		$this->_url = filter_var($this->_url, FILTER_SANITIZE_URL); // membersihkan karakter params yg aneh krn bisa memicu hacker
+		$this->_url = rtrim($this->_url, '/'); // http://example.com/product/view
         $this->_url = explode('/', $this->_url); // result : [product, view, 123]
     }
 

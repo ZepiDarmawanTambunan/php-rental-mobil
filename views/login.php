@@ -49,14 +49,14 @@
 								  			</button>
 										</div>
 									<?php endif ?>
-									<form class="user" method="POST" action="<?= base_url('auth/login') ?>">
-										<div class="form-group">
+									<form class="user" method="POST" action="<?= base_url('auth/login') ?>">	
+									<div class="form-group">
 											<input type="text" class="form-control form-control-user" name="username" placeholder="username : admin" autocomplete="off" required="required" autofocus>
 										</div>
 										<div class="form-group">
 											<input type="password" class="form-control form-control-user" name="password" placeholder="password : admin" required="required">
 										</div>
-										<button class="btn btn-primary btn-user btn-block" name="login">Login</button>
+										<button type="submit" class="btn btn-primary btn-user btn-block" name="login">Login</button>
 									</form>
 								</div>
 							</div>
