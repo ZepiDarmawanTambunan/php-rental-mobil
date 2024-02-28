@@ -65,9 +65,9 @@ class C_Akun extends Controller {
 	}
 
     public function hapus($id = null){
-		if(!isset($id) || $this->akun->cek($id)->num_rows == 0) redirect('akun');
+		if(!isset($id) || $this->akun->cek($id)->rowCount() == 0) redirect('akun');
 
-		$gambar	= $this->akun->detail($id)->fetch_object()->foto;
+		$gambar	= $this->akun->detail($id)->fetch(PDO::FETCH_OBJ)->foto;
 
 		unlink(BASEPATH . DS . 'uploads' . DS . $gambar) or die('gagal hapus gambar!');
 		if($this->akun->hapus($id)){
@@ -80,12 +80,12 @@ class C_Akun extends Controller {
 	}
 
     public function detail($id){
-		if(!isset($id) || $this->akun->cek($id)->num_rows == 0) redirect('akun');
+		if(!isset($id) || $this->akun->cek($id)->rowCount() == 0) redirect('akun');
 
 		$data = [
 			'aktif' => 'akun',
 			'judul' => 'Detail Akun',
-			'akun' => $this->akun->detail($id)->fetch_object(),
+			'akun' => $this->akun->detail($id)->fetch(PDO::FETCH_OBJ),
 		];
 
 		$this->view('akun/detail', $data);

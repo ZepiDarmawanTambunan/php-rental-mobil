@@ -27,8 +27,9 @@ class C_Auth extends Controller{
 
 			$akun = $this->akun->cek_login($username);
 			
-			if($akun->num_rows > 0){
-				$akun = $akun->fetch_object();
+			if($akun->rowCount() > 0){
+				// $akun = $akun->fetch(PDO::FETCH_ASSOC);
+				$akun = $akun->fetch(PDO::FETCH_OBJ);
 				if(password_verify($password, $akun->password)){
 					setSession('login', [
 						'auth' => true,

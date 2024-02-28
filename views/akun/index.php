@@ -117,7 +117,7 @@
 	                    				</tr>
 	                  				</tfoot>
 	                 				<tbody>
-										<?php while($akun = $data_akun->fetch_object()) : ?>
+										<?php while($akun = $data_akun->fetch(PDO::FETCH_OBJ)) : ?>
 											<tr>
 												<td><?= $no++ ?></td>
 												<td><?= $akun->nama ?></td>

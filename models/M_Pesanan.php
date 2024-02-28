@@ -33,7 +33,7 @@ class M_Pesanan extends Model{
 
     public function hapus($id){
 		$query = $this->delete('tbl_pesanan', ['id' => $id]);
-		$query = $this->execute();
+		// $query = $this->execute();
 		return $query;
 	}
 

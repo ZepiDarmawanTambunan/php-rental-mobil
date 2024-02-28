@@ -25,8 +25,14 @@ class M_Akun extends Model {
 		return $query;
 	}
 
-    public function cek_login($username){
+	public function cek_login($username){
 		$query = $this->get_where('tbl_akun', ['username' => $username]);
+		$query = $this->execute();
+		return $query;
+	}
+
+	public function detail($id){
+		$query = $this->get_where('tbl_akun', ['id' => $id]);
 		$query = $this->execute();
 		return $query;
 	}
